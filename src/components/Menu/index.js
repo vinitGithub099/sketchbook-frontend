@@ -1,5 +1,5 @@
 import { MENU_ITEMS } from "@/constants";
-import { menuItemClick } from "@/store/Features/menuSlice";
+import { actionItemClick, menuItemClick } from "@/store/Features/menuSlice";
 import {
   faEraser,
   faFileArrowDown,
@@ -20,6 +20,10 @@ export default function Menu() {
     dispatch(menuItemClick(itemName));
   };
 
+  const handleActionItemClick = (itemName) => {
+    dispatch(actionItemClick(itemName));
+  };
+
   return (
     <div className={styles.menuContainer}>
       <div
@@ -38,19 +42,19 @@ export default function Menu() {
       </div>
       <div
         className={styles.iconsWrapper}
-        onClick={() => handleMenuItemClick(MENU_ITEMS.UNDO)}
+        onClick={() => handleActionItemClick(MENU_ITEMS.UNDO)}
       >
         <FontAwesomeIcon icon={faRotateLeft} />
       </div>
       <div
         className={styles.iconsWrapper}
-        onClick={() => handleMenuItemClick(MENU_ITEMS.REDO)}
+        onClick={() => handleActionItemClick(MENU_ITEMS.REDO)}
       >
         <FontAwesomeIcon icon={faRotateRight} />
       </div>
       <div
         className={styles.iconsWrapper}
-        onClick={() => handleMenuItemClick(MENU_ITEMS.DOWNLOAD)}
+        onClick={() => handleActionItemClick(MENU_ITEMS.DOWNLOAD)}
       >
         <FontAwesomeIcon icon={faFileArrowDown} />
       </div>
