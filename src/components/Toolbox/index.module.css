@@ -1,5 +1,5 @@
 .toolBoxContainer {
-  @apply p-2 border-black inline-block my-4;
+  @apply p-2 inline-block my-4;
   box-shadow: theme("colors.shadow1");
   /* background-color: rgb(250, 250, 250); */
 

@@ -1,2 +1,3 @@
-.boardContainer {
+.canvasContainer {
+  @apply w-full flex-1 bg-white;
 }
