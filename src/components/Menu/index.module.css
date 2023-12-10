@@ -1,8 +1,8 @@
 .menuContainer {
-  @apply mt-6 p-2 max-w-sm mx-auto flex justify-center gap-2 shadow-md shadow-gray-300 bg-white;
+  @apply absolute left-2 top-2 p-2 mx-auto inline-block shadow-md shadow-gray-300 bg-white;
 
   .iconsWrapper {
-    @apply px-4 py-2 hover:cursor-pointer rounded-md text-xl;
+    @apply px-3 py-2 my-2 hover:cursor-pointer rounded-md text-xl;
 
     &:hover,
     &.active {

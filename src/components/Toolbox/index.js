@@ -17,11 +17,8 @@ export default function Toolbox() {
     dispatch(changeBrushSize({ item: activeMenuItem, size: e.target.value }));
   };
 
-  const updateColor = (e) => {
-    const newColor = e.target.id;
-    if (newColor) {
-      dispatch(changeColor({ item: activeMenuItem, color: newColor }));
-    }
+  const updateColor = (newColor) => {
+    dispatch(changeColor({ item: activeMenuItem, color: newColor }));
   };
 
   return (
@@ -29,15 +26,16 @@ export default function Toolbox() {
       {showStrokeToolOption ? (
         <div className={styles.toolItem}>
           <h4 className={styles.toolText}>Stroke Color:</h4>
-          <div className={styles.itemContainer} onClick={updateColor}>
+          <div className={styles.itemContainer}>
             {Object.keys(COLORS).map((bgColor, index) => (
               <div
                 key={index}
                 className={cx(styles.colorBox, {
-                  [styles.active]: bgColor === color,
+                  [styles.active]: COLORS[bgColor] === color,
                 })}
-                style={{ backgroundColor: bgColor }}
+                style={{ backgroundColor: COLORS[bgColor] }}
                 id={bgColor}
+                onClick={() => updateColor(COLORS[bgColor])}
               ></div>
             ))}
           </div>
@@ -47,7 +45,14 @@ export default function Toolbox() {
         <div className={styles.toolItem}>
           <h4 className={styles.toolText}>Brush Size: {activeMenuItem}</h4>
           <div className={styles.itemContainer}>
-            <input type="range" min={1} max={10} onChange={updateBrushSize} />
+            <input
+              type="range"
+              min={1}
+              max={10}
+              step={1}
+              value={size}
+              onChange={updateBrushSize}
+            />
           </div>
         </div>
       ) : null}

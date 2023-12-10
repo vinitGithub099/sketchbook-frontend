@@ -1,7 +1,6 @@
 .toolBoxContainer {
-  @apply p-2 inline-block my-4;
+  @apply absolute top-80 left-2 p-2 inline-block my-4 bg-white;
   box-shadow: theme("colors.shadow1");
-  /* background-color: rgb(250, 250, 250); */
 
   .toolItem {
     @apply py-2;

@@ -1,10 +1,10 @@
-import Board from "@/components/Board";
+import Board from "@/components/Board/index";
 import Menu from "@/components/Menu/index";
-import Toolbox from "@/components/Toolbox";
+import Toolbox from "@/components/Toolbox/index";
 
 export default function Home() {
   return (
-    <div className="w-full h-screen p-4 bg-gray-100 flex flex-col">
+    <div className="w-full h-screen bg-white">
       <Menu></Menu>
       <Toolbox></Toolbox>
       <Board></Board>

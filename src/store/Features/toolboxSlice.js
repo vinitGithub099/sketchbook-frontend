@@ -19,14 +19,12 @@ export const toolboxSlice = createSlice({
   name: "toolbox",
   initialState,
   reducers: {
-    changeColor: (state, action) => ({
-      ...state,
-      [action.payload.item]: { color: action.payload.color },
-    }),
-    changeBrushSize: (state, action) => ({
-      ...state,
-      [action.payload.item]: { size: action.payload.size },
-    }),
+    changeColor: (state, action) => {
+      state[action.payload.item].color = action.payload.color;
+    },
+    changeBrushSize: (state, action) => {
+      state[action.payload.item].size = action.payload.size;
+    },
   },
 });
 
