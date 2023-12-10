@@ -12,7 +12,7 @@ export default function Menu() {
   return (
     <div className={styles.menuContainer}>
       <div className={styles.iconsWrapper}>
-        <FontAwesomeIcon icon={faPencil} className={styles.icons} />
+        <FontAwesomeIcon icon={faPencil} />
       </div>
       <div className={styles.iconsWrapper}>
         <FontAwesomeIcon icon={faEraser} />

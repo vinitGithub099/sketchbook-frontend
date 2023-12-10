@@ -1,4 +1,13 @@
 .menuContainer {
+  @apply mt-6 p-2 max-w-sm mx-auto flex justify-center shadow-md shadow-gray-300 bg-white;
+
   .iconsWrapper {
+    @apply px-4 py-2 hover:cursor-pointer rounded-md text-xl;
+
+    &:hover,
+    &.active {
+      @apply bg-gray-200;
+      background-color: theme("colors.text2");
+    }
   }
 }
