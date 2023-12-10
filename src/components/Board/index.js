@@ -8,6 +8,8 @@ export default function Board() {
   const dispatch = useDispatch();
   const canvasRef = useRef(null);
   const shouldDrawRef = useRef(false);
+  const drawHistoryRef = useRef([]);
+  const historyPointerRef = useRef(null);
 
   const { activeMenuItem, actionMenuItem } = useSelector((state) => state.menu);
   const { color, size } = useSelector((state) => state.toolbox[activeMenuItem]);
@@ -23,8 +25,21 @@ export default function Board() {
       anchor.href = URL;
       anchor.download = "sketch.jpg";
       anchor.click();
-      dispatch(actionItemClick(null));
+    } else if (
+      actionMenuItem === MENU_ITEMS.UNDO ||
+      actionMenuItem === MENU_ITEMS.REDO
+    ) {
+      if (historyPointerRef.current > 0 && actionMenuItem === MENU_ITEMS.UNDO)
+        historyPointerRef.current -= 1;
+      if (
+        historyPointerRef.current < drawHistoryRef.current.length - 1 &&
+        actionMenuItem === MENU_ITEMS.REDO
+      )
+        historyPointerRef.current += 1;
+      const imageData = drawHistoryRef.current[historyPointerRef.current];
+      context.putImageData(imageData, 0, 0);
     }
+    dispatch(actionItemClick(null));
   }, [actionMenuItem]);
 
   useEffect(() => {
@@ -66,6 +81,9 @@ export default function Board() {
 
     const handleMouseUp = (e) => {
       shouldDrawRef.current = false;
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      drawHistoryRef.current.push(imageData);
+      historyPointerRef.current = drawHistoryRef.current.length - 1;
     };
 
     const handleMouseMove = (e) => {
