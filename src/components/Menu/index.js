@@ -1,20 +1,26 @@
 import { MENU_ITEMS } from "@/constants";
-import { actionItemClick, menuItemClick } from "@/store/Features/menuSlice";
 import {
-  faEraser,
-  faFileArrowDown,
-  faPencil,
-  faRotateLeft,
-  faRotateRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  actionItemClick,
+  menuItemClick,
+  toggleFill,
+} from "@/store/Features/menuSlice";
 import cx from "classnames";
+import { FaFileDownload, FaRedoAlt, FaSlash, FaUndoAlt } from "react-icons/fa";
+import {
+  FaEraser,
+  FaFill,
+  FaPencil,
+  FaRegCircle,
+  FaRegSquareFull,
+} from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.css";
 
 export default function Menu() {
   const dispatch = useDispatch();
-  const activeMenuItem = useSelector((state) => state.menu.activeMenuItem);
+  const { activeMenuItem, actionMenuItem, filled } = useSelector(
+    (state) => state.menu
+  );
 
   const handleMenuItemClick = (itemName) => {
     dispatch(menuItemClick(itemName));
@@ -22,6 +28,10 @@ export default function Menu() {
 
   const handleActionItemClick = (itemName) => {
     dispatch(actionItemClick(itemName));
+  };
+
+  const handleFillStatus = () => {
+    dispatch(toggleFill());
   };
 
   return (
@@ -32,31 +42,69 @@ export default function Menu() {
         })}
         onClick={() => handleMenuItemClick(MENU_ITEMS.PENCIL)}
       >
-        <FontAwesomeIcon icon={faPencil} />
+        <FaPencil />
       </div>
       <div
-        className={styles.iconsWrapper}
+        className={cx(styles.iconsWrapper, {
+          [styles.active]: activeMenuItem === MENU_ITEMS.LINE,
+        })}
+        onClick={() => handleMenuItemClick(MENU_ITEMS.LINE)}
+      >
+        <FaSlash />
+      </div>
+      <div
+        className={cx(styles.iconsWrapper, {
+          [styles.active]: activeMenuItem === MENU_ITEMS.ERASER,
+        })}
         onClick={() => handleMenuItemClick(MENU_ITEMS.ERASER)}
       >
-        <FontAwesomeIcon icon={faEraser} />
+        <FaEraser />
       </div>
       <div
-        className={styles.iconsWrapper}
+        className={cx(styles.iconsWrapper, {
+          [styles.active]: activeMenuItem === MENU_ITEMS.SQUARE,
+        })}
+        onClick={() => handleMenuItemClick(MENU_ITEMS.SQUARE)}
+      >
+        <FaRegSquareFull />
+      </div>
+      <div
+        className={cx(styles.iconsWrapper, {
+          [styles.active]: activeMenuItem === MENU_ITEMS.CIRCLE,
+        })}
+        onClick={() => handleMenuItemClick(MENU_ITEMS.CIRCLE)}
+      >
+        <FaRegCircle />
+      </div>
+      <div
+        className={cx(styles.iconsWrapper, {
+          [styles.active]: actionMenuItem === MENU_ITEMS.UNDO,
+        })}
         onClick={() => handleActionItemClick(MENU_ITEMS.UNDO)}
       >
-        <FontAwesomeIcon icon={faRotateLeft} />
+        <FaUndoAlt />
       </div>
       <div
-        className={styles.iconsWrapper}
+        className={cx(styles.iconsWrapper, {
+          [styles.active]: actionMenuItem === MENU_ITEMS.REDO,
+        })}
         onClick={() => handleActionItemClick(MENU_ITEMS.REDO)}
       >
-        <FontAwesomeIcon icon={faRotateRight} />
+        <FaRedoAlt />
       </div>
       <div
-        className={styles.iconsWrapper}
+        className={cx(styles.iconsWrapper, {
+          [styles.active]: actionMenuItem === MENU_ITEMS.DOWNLOAD,
+        })}
         onClick={() => handleActionItemClick(MENU_ITEMS.DOWNLOAD)}
       >
-        <FontAwesomeIcon icon={faFileArrowDown} />
+        <FaFileDownload />
+      </div>
+      <div
+        className={cx(styles.iconsWrapper, { [styles.active]: filled })}
+        onClick={() => handleActionItemClick()}
+      >
+        <FaFill />
       </div>
     </div>
   );

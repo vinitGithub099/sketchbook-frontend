@@ -1,5 +1,6 @@
 .boardContainer {
-  @apply w-full flex-1 bg-white;
+  @apply w-full bg-white;
+
   .canvasContainer {
     @apply w-full;
   }

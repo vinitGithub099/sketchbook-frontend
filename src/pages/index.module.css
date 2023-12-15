@@ -1,0 +1,7 @@
+.appContainer {
+  @apply w-full h-screen;
+
+  .actionContainer {
+    @apply m-2 absolute border flex flex-col;
+  }
+}

@@ -1,6 +1,6 @@
-import { COLORS, MENU_ITEMS } from "@/constants";
+import { MENU_ITEMS } from "@/constants";
 import { changeBrushSize, changeColor } from "@/store/Features/toolboxSlice";
-import cx from "classnames";
+import { FaPaintBrush } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.css";
 
@@ -9,9 +9,17 @@ export default function Toolbox() {
   const activeMenuItem = useSelector((state) => state.menu.activeMenuItem);
   const { color, size } = useSelector((state) => state.toolbox[activeMenuItem]);
 
-  const showStrokeToolOption = activeMenuItem == MENU_ITEMS.PENCIL;
+  const showStrokeToolOption =
+    activeMenuItem == MENU_ITEMS.PENCIL ||
+    activeMenuItem == MENU_ITEMS.LINE ||
+    activeMenuItem == MENU_ITEMS.CIRCLE ||
+    activeMenuItem == MENU_ITEMS.SQUARE;
   const showBrushToolOption =
-    activeMenuItem == MENU_ITEMS.PENCIL || activeMenuItem == MENU_ITEMS.ERASER;
+    activeMenuItem == MENU_ITEMS.PENCIL ||
+    activeMenuItem == MENU_ITEMS.LINE ||
+    activeMenuItem == MENU_ITEMS.SQUARE ||
+    activeMenuItem == MENU_ITEMS.CIRCLE ||
+    activeMenuItem == MENU_ITEMS.ERASER;
 
   const updateBrushSize = (e) => {
     dispatch(changeBrushSize({ item: activeMenuItem, size: e.target.value }));
@@ -24,32 +32,26 @@ export default function Toolbox() {
   return (
     <div className={styles.toolBoxContainer}>
       {showStrokeToolOption ? (
-        <div className={styles.toolItem}>
-          <h4 className={styles.toolText}>Stroke Color:</h4>
-          <div className={styles.itemContainer}>
-            {Object.keys(COLORS).map((bgColor, index) => (
-              <div
-                key={index}
-                className={cx(styles.colorBox, {
-                  [styles.active]: COLORS[bgColor] === color,
-                })}
-                style={{ backgroundColor: COLORS[bgColor] }}
-                id={bgColor}
-                onClick={() => updateColor(COLORS[bgColor])}
-              ></div>
-            ))}
-          </div>
+        <div className={styles.colorInputWrapper}>
+          <input
+            className={styles.colorBox}
+            type="color"
+            onClick={(e) => updateColor(e.target.value)}
+          />
         </div>
       ) : null}
       {showBrushToolOption ? (
-        <div className={styles.toolItem}>
-          <h4 className={styles.toolText}>Brush Size: {activeMenuItem}</h4>
-          <div className={styles.itemContainer}>
+        <div className={styles.brushContainer}>
+          <div className={styles.iconsWrapper}>
+            <FaPaintBrush />
+          </div>
+          <div className={styles.rangeInputWrapper}>
             <input
               type="range"
+              className={styles.rangeInput}
               min={1}
-              max={10}
-              step={1}
+              max={100}
+              step={0.1}
               value={size}
               onChange={updateBrushSize}
             />

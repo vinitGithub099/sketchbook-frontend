@@ -1,27 +1,31 @@
 .toolBoxContainer {
-  @apply absolute top-80 left-2 p-2 inline-block my-4 bg-white;
-  box-shadow: theme("colors.shadow1");
+  @apply mx-auto inline-block shadow-md shadow-gray-300;
+  background-color: theme("colors.background2");
 
-  .toolItem {
-    @apply py-2;
+  .brushContainer {
+    @apply flex items-center;
 
-    .toolText {
-      @apply text-lg;
+    &:hover .rangeInputWrapper {
+      @apply block;
     }
+    .iconsWrapper {
+      @apply px-3 py-2 my-2 hover:cursor-pointer rounded-md text-xl;
 
-    .itemContainer {
-      @apply inline-flex flex-wrap items-center;
-
-      .colorBox {
-        @apply w-8 h-8 mr-2 border;
-
-        &:hover,
-        &.active {
-          @apply cursor-pointer;
-          border: 1.5px solid theme("colors.border2");
-          box-shadow: theme("colors.shadow2");
-        }
+      &:hover,
+      &.active {
+        background-color: theme("colors.text2");
       }
+    }
+    .rangeInputWrapper {
+      @apply hidden fixed pl-2 pr-2 py-1 left-12 z-10;
+    }
+  }
+
+  .colorInputWrapper {
+    @apply flex;
+
+    .colorBox {
+      @apply mx-auto w-8 h-8;
     }
   }
 }
