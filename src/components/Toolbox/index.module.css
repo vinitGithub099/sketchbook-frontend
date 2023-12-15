@@ -1,6 +1,5 @@
 .toolBoxContainer {
-  @apply mx-auto inline-block shadow-md shadow-gray-300;
-  background-color: theme("colors.background2");
+  @apply mx-auto py-2 border inline-block rounded-md;
 
   .brushContainer {
     @apply flex items-center;

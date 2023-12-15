@@ -1,7 +1,4 @@
-.boardContainer {
-  @apply w-full bg-white;
-
-  .canvasContainer {
-    @apply w-full;
-  }
+.canvasContainer {
+  @apply w-full;
+  background-color: theme("colors.background2");
 }

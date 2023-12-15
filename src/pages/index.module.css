@@ -1,7 +1,8 @@
 .appContainer {
-  @apply w-full h-screen;
+  @apply w-full h-screen bg-white;
 
   .actionContainer {
-    @apply m-2 absolute border flex flex-col;
+    @apply m-2 p-2 absolute flex flex-col rounded-md bg-white;
+    box-shadow: theme("colors.shadow1");
   }
 }
