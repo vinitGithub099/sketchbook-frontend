@@ -2,7 +2,6 @@ import { MENU_ITEMS } from "@/constants";
 import { actionItemClick } from "@/store/Features/menuSlice";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./index.module.css";
 
 export default function Board() {
   const dispatch = useDispatch();
@@ -158,10 +157,11 @@ export default function Board() {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    context.fillStyle = "	#FFFFFF";
+    context.fillRect(0, 0, canvas.width, canvas.height);
   }, []);
 
-  return <canvas ref={canvasRef} className={styles.canvasContainer}></canvas>;
+  return <canvas ref={canvasRef}></canvas>;
 }
