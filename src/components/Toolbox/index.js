@@ -26,6 +26,7 @@ export default function Toolbox() {
   };
 
   const updateColor = (newColor) => {
+    console.log("changeColor fired");
     dispatch(changeColor({ item: activeMenuItem, color: newColor }));
   };
 
@@ -36,6 +37,7 @@ export default function Toolbox() {
           <input
             className={styles.colorBox}
             type="color"
+            defaultValue={color}
             onClick={(e) => updateColor(e.target.value)}
           />
         </div>

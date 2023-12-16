@@ -17,6 +17,7 @@ export default function Board() {
     (state) => state.menu
   );
   const { color, size } = useSelector((state) => state.toolbox[activeMenuItem]);
+  const { type } = useSelector((state) => state.toolbox[MENU_ITEMS.DOWNLOAD]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -35,6 +36,7 @@ export default function Board() {
 
     const drawRectangle = (x, y) => {
       if (filled) {
+        context.fillStyle = color;
         context.fillRect(x, y, prevX - x, prevY - y);
       } else {
         context.strokeRect(x, y, prevX - x, prevY - y);
@@ -43,10 +45,12 @@ export default function Board() {
 
     const drawCircle = (x, y) => {
       context.beginPath();
+
       const radius = Math.abs(prevX - x) + Math.abs(prevY - y);
       context.arc(x, y, radius, 0, 2 * Math.PI);
       context.stroke();
       if (filled) {
+        context.fillStyle = color;
         context.fill();
       }
     };
@@ -79,10 +83,6 @@ export default function Board() {
 
       if (activeMenuItem === MENU_ITEMS.PENCIL) drawLine(e.clientX, e.clientY);
 
-      if (activeMenuItem === MENU_ITEMS.LINE) {
-        /* drawLine(e.clientX, e.clientY); */
-      }
-
       if (activeMenuItem === MENU_ITEMS.ERASER) drawLine(e.clientX, e.clientY);
 
       if (activeMenuItem === MENU_ITEMS.SQUARE) {
@@ -103,7 +103,7 @@ export default function Board() {
       canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [activeMenuItem, filled]);
+  }, [activeMenuItem, filled, color]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -114,7 +114,7 @@ export default function Board() {
       const URL = canvas.toDataURL();
       const anchor = document.createElement("a");
       anchor.href = URL;
-      anchor.download = "sketch.jpg";
+      anchor.download = `sketch.${type}`;
       anchor.click();
     } else if (
       actionMenuItem === MENU_ITEMS.UNDO ||
@@ -138,10 +138,8 @@ export default function Board() {
         if (imageData) context.putImageData(imageData, 0, 0);
       }
     }
-    console.log(drawHistoryRef.current.length);
-    console.log(historyPointerRef.current);
     dispatch(actionItemClick(null));
-  }, [actionMenuItem]);
+  }, [actionMenuItem, type]);
 
   useEffect(() => {
     if (!canvasRef.current) return;

@@ -23,6 +23,7 @@ module.exports = {
         border2: "#d6d6d6",
         text1: "#3d3d3d",
         text2: "#e3e2fe",
+        success: "#22bb33",
       },
     },
   },

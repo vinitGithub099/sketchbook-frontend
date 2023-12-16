@@ -14,6 +14,7 @@ import {
   FaRegSquareFull,
 } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
+import Download from "./Download";
 import styles from "./index.module.css";
 
 export default function Menu() {
@@ -29,6 +30,11 @@ export default function Menu() {
   const handleActionItemClick = (itemName) => {
     dispatch(actionItemClick(itemName));
   };
+
+  // const handleDownload = (fileType) => {
+  //   dispatch(changeFileType(fileType));
+  //   handleActionItemClick(MENU_ITEMS.DOWNLOAD);
+  // };
 
   const handleFillStatus = () => {
     dispatch(toggleFill());
@@ -96,13 +102,13 @@ export default function Menu() {
         className={cx(styles.iconsWrapper, {
           [styles.active]: actionMenuItem === MENU_ITEMS.DOWNLOAD,
         })}
-        onClick={() => handleActionItemClick(MENU_ITEMS.DOWNLOAD)}
       >
         <FaFileDownload />
+        <Download />
       </div>
       <div
         className={cx(styles.iconsWrapper, { [styles.active]: filled })}
-        onClick={() => handleActionItemClick()}
+        onClick={() => handleFillStatus()}
       >
         <FaFill />
       </div>

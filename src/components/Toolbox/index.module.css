@@ -1,5 +1,5 @@
 .toolBoxContainer {
-  @apply mx-auto py-2 border inline-block rounded-md;
+  @apply mx-auto py-2 inline-block rounded-md bg-gray-100;
 
   .brushContainer {
     @apply flex items-center;
@@ -7,6 +7,7 @@
     &:hover .rangeInputWrapper {
       @apply block;
     }
+
     .iconsWrapper {
       @apply px-3 py-2 my-2 hover:cursor-pointer rounded-md text-xl;
 

@@ -24,7 +24,9 @@ const initialState = {
   },
   [MENU_ITEMS.UNDO]: {},
   [MENU_ITEMS.REDO]: {},
-  [MENU_ITEMS.DOWNLOAD]: {},
+  [MENU_ITEMS.DOWNLOAD]: {
+    type: "SVG",
+  },
 };
 
 export const toolboxSlice = createSlice({
@@ -37,9 +39,14 @@ export const toolboxSlice = createSlice({
     changeBrushSize: (state, action) => {
       state[action.payload.item].size = action.payload.size;
     },
+    changeFileType: (state, action) => ({
+      ...state,
+      [MENU_ITEMS.DOWNLOAD]: { type: action.payload },
+    }),
   },
 });
 
-export const { changeColor, changeBrushSize } = toolboxSlice.actions;
+export const { changeColor, changeBrushSize, changeFileType } =
+  toolboxSlice.actions;
 
 export default toolboxSlice.reducer;
