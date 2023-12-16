@@ -1,4 +1,4 @@
-import { MENU_ITEMS } from "@/constants";
+import { COLORS, MENU_ITEMS } from "@/constants";
 import { actionItemClick } from "@/store/Features/menuSlice";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -159,7 +159,7 @@ export default function Board() {
     const context = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    context.fillStyle = "	#FFFFFF";
+    context.fillStyle = COLORS.WHITE;
     context.fillRect(0, 0, canvas.width, canvas.height);
   }, []);
 
