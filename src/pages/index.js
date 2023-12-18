@@ -6,7 +6,7 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
   const handleToggleMenu = () => setOpenMenu((prev) => !prev);
   return (
     <div className={styles.appContainer}>
