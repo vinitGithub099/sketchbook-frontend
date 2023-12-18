@@ -2,7 +2,7 @@
   @apply w-full h-screen bg-white;
 
   .actionContainer {
-    @apply m-2 p-2 absolute flex flex-col rounded-md bg-white;
+    @apply fixed p-1 top-14 left-2 flex flex-col rounded-md bg-background4;
     box-shadow: theme("colors.shadow1");
   }
 }

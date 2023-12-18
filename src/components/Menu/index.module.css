@@ -2,7 +2,7 @@
   @apply mx-auto inline-block;
 
   .iconsWrapper {
-    @apply border px-3 py-2 my-2 hover:cursor-pointer rounded-md text-xl flex items-baseline;
+    @apply px-3 py-2 my-2 hover:cursor-pointer rounded-md text-xl flex items-baseline;
 
     &:hover,
     &.active {
@@ -15,13 +15,13 @@
     }
 
     .downloadWrapper {
-      @apply hidden fixed left-16 hover:cursor-auto;
+      @apply hidden fixed left-14 hover:cursor-auto;
 
       .downloadOptions {
-        @apply ml-2 p-2 border flex flex-col gap-2 rounded-md bg-background3;
+        @apply ml-2 p-2 flex flex-col gap-2 rounded-md bg-background4;
 
         .downloadoption {
-          @apply px-2 py-1 flex items-center gap-2 text-sm border rounded-sm hover:cursor-pointer hover:bg-background2;
+          @apply px-2 py-1 flex items-center gap-2 text-sm rounded-sm hover:cursor-pointer hover:bg-background2;
 
           .optionText {
             @apply text-black;
