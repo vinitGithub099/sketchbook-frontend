@@ -25,9 +25,9 @@ export default function Toolbox() {
     dispatch(changeBrushSize({ item: activeMenuItem, size: e.target.value }));
   };
 
-  const updateColor = (newColor) => {
+  const updateColor = (e) => {
     console.log("changeColor fired");
-    dispatch(changeColor({ item: activeMenuItem, color: newColor }));
+    dispatch(changeColor({ item: activeMenuItem, color: e.target.value }));
   };
 
   return (
@@ -37,8 +37,8 @@ export default function Toolbox() {
           <input
             className={styles.colorBox}
             type="color"
-            defaultValue={color}
-            onClick={(e) => updateColor(e.target.value)}
+            value={color}
+            onChange={updateColor}
           />
         </div>
       ) : null}
